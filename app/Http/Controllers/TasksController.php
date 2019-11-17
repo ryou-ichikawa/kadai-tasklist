@@ -51,7 +51,7 @@ class TasksController extends Controller
         ]);
         
         $task = new Task;
-        $task->title = $request->status;    // 追加
+        $task->status = $request->status;    // 追加
         $task->content = $request->content;
         $task->save();
 
