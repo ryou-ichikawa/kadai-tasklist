@@ -65,16 +65,17 @@
         </style>
     </head>
     <body>
-        
-        @extends('layouts.app')
-
-        @section('content')
-            <div class="center jumbotron">
-                <div class="text-center">
-                    <h1>Welcome to the Microposts</h1>
-                </div>
+        <div class="flex-center position-ref full-height">
+        @if (Route::has('login'))
+            <div class="top-right links">
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('register') }}">Register</a>
+                @endauth
             </div>
-        @endsection
+        @endif
         
             <div class="content">
                 <div class="title m-b-md">
