@@ -15,13 +15,19 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
         
+       $data = [];    
+       if (\Auth::check()) {    
+            $user = \Auth::user();    
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
         
+            $data = [    
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+        }
+       
+        return view('welcome', $data);
     }
 
     /**
@@ -29,6 +35,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   
     public function create()
     {
         $task = new Task;
@@ -50,12 +57,11 @@ class TasksController extends Controller
             'status' => 'required|max:10',   // 最大10文字
         ]);
         
-        $task = new Task;
-        $task->status = $request->status;    // 追加
-        $task->content = $request->content;
-        $task->save();
+        $request->user()->tasks()->create([
+            'status' => $request->status,
+        ]);
 
-        return redirect('/');
+        return back();
     }
 
     /**
@@ -120,9 +126,12 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
-
-        return redirect('/');
+        $task = \App\Task::find($id);
+        
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
+        }
+    
+        return back();
     }
 }
