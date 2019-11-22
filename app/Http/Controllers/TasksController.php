@@ -110,9 +110,11 @@ class TasksController extends Controller
        
         ]);
 
-        $task = Task::find($id);
+        
+        $Task = Task::find($id);
         $task->status = $request->status;    // 追加
         $task->content = $request->content;
+        $task->user_id = auth()->id();
         $task->save();
 
         return redirect('/');
