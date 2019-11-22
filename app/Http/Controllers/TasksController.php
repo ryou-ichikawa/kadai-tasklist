@@ -105,6 +105,9 @@ class TasksController extends Controller
     {
         $this->validate($request, [
             'status' => 'required|max:10',   //最大10文字
+            'content' => 'required|max:191',
+            'user_id' => 'required|max:10',
+       
         ]);
 
         $task = Task::find($id);
