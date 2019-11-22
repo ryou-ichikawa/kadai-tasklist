@@ -57,7 +57,7 @@ class TasksController extends Controller
             'status' => 'required|max:10',   // 最大10文字
         ]);
         
-        $request->user()->tasks()->create([
+        $request->user()->tasks()->create([  
             'status' => $request->status,
         ]);
 
