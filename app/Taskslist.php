@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Taskslist extends Model
+class Tasks extends Model
 {
     protected $fillable = ['content', 'user_id'];
 
