@@ -104,17 +104,13 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'status' => 'required|max:10',   //最大10文字
-            'content' => 'required|max:191',
-            'user_id' => 'required|max:10',
+            'status' => 'required|max:10',   //最大10
        
         ]);
 
         
         $Task = Task::find($id);
         $task->status = $request->status;    // 追加
-        $task->content = $request->content;
-        $task->user_id = auth()->id();
         $task->save();
 
         return redirect('/');
