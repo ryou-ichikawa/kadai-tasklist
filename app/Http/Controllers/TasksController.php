@@ -56,10 +56,12 @@ class TasksController extends Controller
 
         $this->validate($request, [
             'status' => 'required|max:10',   // 最大10文字
+            'content' => 'required|max:191',   
         ]);
 
         $request->user()->tasks()->create([
             'status' => $request->status,
+            'content' => $request->content,
         ]);
 
         return back();
