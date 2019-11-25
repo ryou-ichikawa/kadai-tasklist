@@ -53,11 +53,12 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'status' => 'required|max:10',   // 最大10文字
         ]);
-        
-        $request->user()->tasks()->create([  
+
+        $request->user()->tasks()->create([
             'status' => $request->status,
         ]);
 
@@ -133,6 +134,6 @@ class TasksController extends Controller
             $task->delete();
         }
     
-        return back();
+         return back();
     }
 }
