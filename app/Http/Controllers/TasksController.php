@@ -114,7 +114,7 @@ class TasksController extends Controller
         
         $Task = Task::find($id);
         $task->status = $request->status;    // 追加
-        $task->content = $content->status;
+        $task->content = $request->contant;
         $task->save();
 
         return redirect('/');
