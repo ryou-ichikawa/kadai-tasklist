@@ -108,12 +108,13 @@ class TasksController extends Controller
     {
         $this->validate($request, [
             'status' => 'required|max:10',   //最大10
-       
+            'content' => 'required|max:191',
         ]);
 
         
         $Task = Task::find($id);
         $task->status = $request->status;    // 追加
+        $content->status = $content->status;
         $task->save();
 
         return redirect('/');
