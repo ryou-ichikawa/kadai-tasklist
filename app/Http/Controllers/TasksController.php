@@ -79,7 +79,7 @@ class TasksController extends Controller
  
         if (\Auth::id() === $task->user_id) {
 
-        return view('task.show', [
+        return view('tasks.show', [
             'task' => $task,
         ]);
     } else {
@@ -98,7 +98,7 @@ class TasksController extends Controller
         
         if (\Auth::id() === $task->user_id) {
             
-            return view('task.edit', [
+            return view('tasks.edit', [
                  'task'=> $task,
             ]);
             
