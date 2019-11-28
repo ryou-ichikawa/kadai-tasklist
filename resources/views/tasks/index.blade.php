@@ -9,8 +9,8 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>ステータス</th></th>
-                    <th>タスク</th>
+                    <th>ステータス</th>
+                    <th>内容</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,5 +24,4 @@
             </tbody>
         </table>
     @endif
-
 @endsection
